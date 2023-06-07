@@ -6,19 +6,19 @@ default: &default
  
 development:
   <<: *default
-  database: blog
+  database: model
   username: postgres
   password: gman1
 
 
 test:
   <<: *default
-  database: blog
+  database: model
   username: postgres
   password: gman1
 
 production:
   <<: *default
-  database: blog
+  database: model
   username: postgres
   password: gman1
