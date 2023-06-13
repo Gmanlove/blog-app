@@ -5,6 +5,8 @@ ruby '3.1.2'
 
 gem 'pg', '~> 1.1'
 
+gem 'rails-controller-testing'
+
 gem 'rspec-rails', '~> 4.0'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
