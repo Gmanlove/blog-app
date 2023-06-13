@@ -16,7 +16,6 @@ RSpec.describe 'Users', type: :request do
       expect(response).to render_template('index')
     end
     it 'include the list of users' do
-      puts response.body
       expect(response.body).to include('The list of users')
     end
   end
