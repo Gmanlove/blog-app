@@ -1,1 +1,17 @@
-<p> list of all post and comment of a user </p>
+<h2>List of all posts and comments of a user</h2>
+
+<div class='posting'>
+  <% @posts.each do |post| %>
+    <div class='use-all'>
+      <%= render partial: 'post', locals: { post: post } %>
+      <div class='comments-content'>
+        <p><strong>Comments:</strong></p>
+        <% post.recent_comments.each do |comment| %>
+          <%= render partial: 'comment', locals: { comment: comment } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <button>pagination</button>
+</div>
