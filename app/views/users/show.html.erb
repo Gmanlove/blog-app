@@ -1,1 +1,29 @@
-<p> User name with posts </p>
+<h2>User name with posts</h2>
+
+<div class="contain">
+  <div class="using">
+    <div class="image-placeholder"></div>
+    <div class="blocks">
+      <h3><%= @user.name %></h3>
+      <p>Number of posts: <%= @user.posts.count %></p>
+    </div>
+  </div>
+  <div class="bio">
+    <p><strong>Bio</strong></p>
+    <p><%= @user.bio %></p>
+  </div>
+  <div class="posting">
+    <% @recent_posts.each do |post| %>
+      <div class="container">
+        <li><h4><%= post.title %></h4></li>
+        <p><%= post.text %></p>
+        <p class="numbers">
+          Comments: <%= post.comments_counter.to_i > 0 ? post.comments_counter : '0' %>
+          Likes: <%= post.likes_counters.to_i > 0 ? post.likes_counters : '0' %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to 'See all posts', user_posts_path(@user) %>
+</div>
