@@ -8,6 +8,13 @@
       <p>Likes: <%= @post.likes_counters.to_i > 0 ? @post.likes_counters : '0' %></p>
     </div>
     <p><%= @post.text %></p>
+    <div>
+      <%= form_with(model: @post, url: like_user_post_path(user_id: @current_user.id, id: @post.id), method: :post, local: true) do |form| %>
+        <%= form.button type: :submit, class: 'like-button' do %>
+          Add Like
+        <% end %>
+      <% end %>
+    </div>
   </article>
 
   <div class='comments'>
@@ -17,3 +24,7 @@
     <% end %>
   </div>
 </section>
+
+<button>
+  <%= link_to 'Add Comment', new_user_post_comment_path(user_id: @current_user.id, post_id: @post.id) %>
+</button>

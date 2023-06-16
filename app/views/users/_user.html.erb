@@ -1,5 +1,7 @@
 <div class="using">
-  <div class="image-placeholder"></div>
+  <div class="image-placeholder"> 
+  <img src="<%= user.photo %>" alt="User" style="width: 200px; height: 200px; margin-top: 10px;" />
+  </div>
   <div class="blocks">
     <h3><%= link_to user.name, user_path(user) %></h3>
     <p>Number of posts: <%= user.posts.count %></p>
