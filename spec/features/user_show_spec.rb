@@ -1,36 +1,51 @@
 require 'rails_helper'
-require 'capybara/rspec'
 
 RSpec.describe 'User Show Page', type: :feature do
-  before do
-    # Set up any necessary data or visit relevant pages
-  end
+  describe 'Viewing user show page' do
+    before(:each) do
+      @user1 = User.create(name: 'Tom', photo: 'https://unsplash.com/photos', bio: 'Teacher from Mexico.',
+                           posts_counter: 0)
+      @first_post = Post.create(author: @user1, title: 'post1', text: 'This is my first post', likes_counter: 0,
+                                comments_counter: 0)
+      @second_post = Post.create(author: @user1, title: 'post2', text: 'This is my second post', likes_counter: 0,
+                                 comments_counter: 0)
+      @third_post = Post.create(author: @user1, title: 'post3', text: 'This is my third post', likes_counter: 0,
+                                comments_counter: 0)
+      @fourth_post = Post.create(author: @user1, title: 'post4', text: 'This is my fourth post', likes_counter: 0,
+                                 comments_counter: 0)
 
-  it 'displays the user profile picture' do
-    # Test code goes here
-  end
+      visit "/users/#{@user1.id}"
+    end
 
-  it 'displays the user username' do
-    # Test code goes here
-  end
+    it 'should show user clicked' do
+      expect(page).to have_content(@user1.name)
+    end
 
-  it 'displays the number of posts the user has written' do
-    # Test code goes here
-  end
+    it 'should show user photo' do
+      expect(page.html).to include(@user1.photo)
+    end
 
-  it 'displays the user bio' do
-    # Test code goes here
-  end
+    it 'should show user bio' do
+      expect(page).to have_content(@user1.bio)
+    end
 
-  it 'displays the first 3 posts of the user' do
-    # Test code goes here
-  end
+    it 'should show posts_counter of clicked user' do
+      expect(page.html).to have_content(@user1.posts_counter)
+    end
 
-  it 'redirects to post show page when clicking on a user post' do
-    # Test code goes here
-  end
+    it 'should show last three posts only' do
+      expect(page).to have_content(@fourth_post.title)
+      expect(page).to have_content(@third_post.title)
+      expect(page).to have_content(@second_post.title)
+    end
 
-  it 'redirects to user post index page when clicking to see all posts' do
-    # Test code goes here
+    it 'should have a link to see all posts' do
+      expect(page.html).to include('See all posts')
+    end
+
+    it 'should show next_path when clicked on see all posts' do
+      click_on 'See all posts'
+      expect(current_path).to eq(current_path)
+    end
   end
 end
