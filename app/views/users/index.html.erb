@@ -3,7 +3,7 @@
 <div class="contain">
   <% @users.each do |user| %>
     <div class="using">
-      <div class="image-placeholder"></div>
+      <img src="<%= user.photo %>" class='image-placeholder' alt="user"/>
       <div class="blocks">
         <li><h3><%= link_to user.name, user_path(user) %></h3></li>
         <p>Number of posts: <%= user.posts.count %></p>

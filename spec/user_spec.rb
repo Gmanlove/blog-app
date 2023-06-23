@@ -46,10 +46,10 @@ RSpec.describe User, type: :model do
         posts_counter: 0
       )
     end
-    let!(:post1) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0) }
-    let!(:post2) { user.posts.create(title: 'Post 2', text: 'This is post 2', comments_counter: 0, likes_counters: 0) }
-    let!(:post3) { user.posts.create(title: 'Post 3', text: 'This is post 3', comments_counter: 0, likes_counters: 0) }
-    let!(:post4) { user.posts.create(title: 'Post 4', text: 'This is post 4', comments_counter: 0, likes_counters: 0) }
+    let!(:post1) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counter: 0) }
+    let!(:post2) { user.posts.create(title: 'Post 2', text: 'This is post 2', comments_counter: 0, likes_counter: 0) }
+    let!(:post3) { user.posts.create(title: 'Post 3', text: 'This is post 3', comments_counter: 0, likes_counter: 0) }
+    let!(:post4) { user.posts.create(title: 'Post 4', text: 'This is post 4', comments_counter: 0, likes_counter: 0) }
 
     it 'returns the most recent 3 posts' do
       recent_posts = user.recent_posts

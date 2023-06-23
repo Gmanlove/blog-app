@@ -62,7 +62,7 @@ The **Blog App** is a classic example of a blog website. It is a fully functiona
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- N/A
+Coming soon
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
