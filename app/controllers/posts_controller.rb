@@ -33,4 +33,20 @@ class PostsController < ApplicationController
   def create
     @user = current_user
     @post = @user.posts.build(post_params)
+    @post.author_id = current_user.id
+    @post.comments_counter = 0
+    @post.likes_counter = 0
 
+    if @post.save
+      redirect_to user_posts_path(@user), notice: 'Post created successfully'
+    else
+      render 'new'
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
+end
