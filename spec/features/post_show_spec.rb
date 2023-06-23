@@ -1,36 +1,39 @@
 require 'rails_helper'
-require 'capybara/rspec'
 
-RSpec.describe 'Post Show Page', type: :feature do
-  before do
-    # Set up any necessary data or visit relevant pages
-  end
+RSpec.describe 'Post show Page', type: :feature do
+  describe 'Viewing Post Show page' do
+    before(:each) do
+      @user1 = User.create(name: 'Tom', photo: 'https://unsplash.com/photos', bio: 'Teacher from Mexico.',
+                           posts_counter: 0)
+      @first_post = Post.create(author: @user1, title: 'post1', text: 'This is my first post', likes_counter: 0,
+                                comments_counter: 0)
+      @comment1 = Comment.create(post: @first_post, author: @user1, text: 'Hi Tom!, Nice comment')
 
-  it 'displays the post title' do
-    # Test code goes here
-  end
+      visit "/users/#{@user1.id}/posts/#{@first_post.id}"
+    end
 
-  it 'displays the author of the post' do
-    # Test code goes here
-  end
+    it 'should show post title' do
+      expect(page).to have_content(@first_post.title)
+    end
 
-  it 'displays the number of comments the post has' do
-    # Test code goes here
-  end
+    it 'should show post text' do
+      expect(page.html).to include(@first_post.text)
+    end
 
-  it 'displays the number of likes the post has' do
-    # Test code goes here
-  end
+    it 'should show comment text ' do
+      expect(page).to have_content(@comment1.text)
+    end
 
-  it 'displays the post body' do
-    # Test code goes here
-  end
+    it 'should show comments counter' do
+      expect(page).to have_content(@first_post.comments_counter)
+    end
 
-  it 'displays the username of each commentor' do
-    # Test code goes here
-  end
+    it 'should show likes counter' do
+      expect(page).to have_content(@first_post.likes_counter)
+    end
 
-  it 'displays the comment each commentor left' do
-    # Test code goes here
+    it 'should show name of commenter' do
+      expect(page).to have_content(@comment1.author.name)
+    end
   end
 end

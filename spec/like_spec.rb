@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
                      posts_counter: 0)
-  post = user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0)
+  post = user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counter: 0)
   subject { Like.new(author_id: user.id, post_id: post.id) }
 
   before { subject.save }
@@ -24,9 +24,9 @@ RSpec.describe Like, type: :model do
 
   describe '#update_post_likes_counter' do
     it 'like increment' do
-      expect(subject.post.likes_counters).to eq(1)
+      expect(subject.post.likes_counter).to eq(1)
       subject.update_post_likes_counter
-      expect(subject.post.likes_counters).to eq(2)
+      expect(subject.post.likes_counter).to eq(2)
     end
   end
 end

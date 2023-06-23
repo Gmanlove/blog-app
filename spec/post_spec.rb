@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
                      posts_counter: 0)
-  subject = user.posts.new(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0)
+  subject = user.posts.new(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counter: 0)
 
   before { subject.save }
 
@@ -22,8 +22,8 @@ RSpec.describe Post, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'likes_counters should be an integer' do
-    subject.likes_counters = 'a'
+  it 'likes_counter should be an integer' do
+    subject.likes_counter = 'a'
     expect(subject).to_not be_valid
   end
 
@@ -32,8 +32,8 @@ RSpec.describe Post, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'likes_counters should be greater than or equal to 0' do
-    subject.likes_counters = -1
+  it 'likes_counter should be greater than or equal to 0' do
+    subject.likes_counter = -1
     expect(subject).to_not be_valid
   end
 
@@ -47,7 +47,7 @@ RSpec.describe Post, type: :model do
 
   describe '#recent_comments' do
     let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0) }
-    let!(:post) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0) }
+    let!(:post) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counter: 0) }
     let!(:comment1) { post.comments.create(text: 'Comment 1', author_id: user.id) }
     let!(:comment2) { post.comments.create(text: 'Comment 2', author_id: user.id) }
     let!(:comment3) { post.comments.create(text: 'Comment 3', author_id: user.id) }
