@@ -9,7 +9,7 @@
     </div>
     <p><%= @post.text %></p>
     <div>
-      <%= form_with(model: @post, url: like_user_post_path(user_id: @current_user.id, id: @post.id), method: :post, local: true) do |form| %>
+      <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/likes" do |form| %>
         <%= form.button type: :submit, class: 'like-button' do %>
           Add Like
         <% end %>

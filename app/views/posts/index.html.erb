@@ -1,4 +1,14 @@
 <h2>List of all posts and comments of a user</h2>
+<div class='using'>
+<img src="<%= @user.photo %>" class='image-placeholder' alt="user"/>
+
+<div class="blocks">
+      <h2><%= @user.name %></h2>
+      <h4>Number of posts: <%= @posts.count %></h4>
+    </div>
+
+</div>
+
 
 <div class='posting'>
   <% @posts.each do |post| %>
@@ -13,5 +23,9 @@
     </div>
   <% end %>
 
-  <button><%= link_to 'New Post', new_user_post_path(@current_user)%></button>
+  <button><%= link_to 'New Post', new_user_post_path(user_id: @user.id)%></button>
+</div>
+<div class="button_holder">
+<button>Pagination</button>
+<button><%= link_to 'Back', :back %></button>
 </div>
