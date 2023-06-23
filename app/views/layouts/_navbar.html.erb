@@ -1,0 +1,12 @@
+<nav class="navbar-container">
+  <%= link_to "Blog", users_path, class: "nav-link logo" %>
+  <ul class="nav-list">
+      <li><%= link_to "My Posts", user_posts_path(current_user), class: "nav-link" %></li>
+      <li><%= link_to "Create a post", new_user_post_path(current_user), class: "nav-link" %></li>
+      <li><%= link_to "Edit account", edit_user_registration_path, class: "nav-link" %></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, class: "nav-link", data: { turbo_method: :delete } %></li>
+    
+      <li><%= link_to "Sign In", new_user_session_path, class: "nav-link" %></li>
+      <li><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+  </ul>
+</nav>
