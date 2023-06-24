@@ -10,7 +10,8 @@
     <p><%= @post.text %></p>
     <div>
       <%= form_with url: "/users/#{@post.author.id}/posts/#{@post.id}/likes" do |form| %>
-        <%= form.button type: :submit, class: 'like-button' do %>
+      <%= form.hidden_field :post_id, value: @post.id %>
+      <%= form.button type: :submit, class: 'like-button' do %>
           Add Like
         <% end %>
       <% end %>

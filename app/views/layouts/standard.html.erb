@@ -9,6 +9,7 @@
 <body id="library">
   <header>
     <h1>Blog App powered by Ruby on Rails</h1>
+    <div><%= button_to "Sign out", destroy_user_session_path, class: "sign_out", method: :delete %><div>
   </header>
   <main>
     <%= yield %>
